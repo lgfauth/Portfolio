@@ -1,28 +1,18 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
-WORKDIR /app
-
-# Esta fase é usada para compilar o projeto de serviço
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-ARG BUILD_CONFIGURATION=Release
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-COPY ["src/Worker/RegisterWorker.csproj", "src/Worker/"]
-RUN dotnet restore "./src/Worker/RegisterWorker.csproj"
+COPY . ./
 
-COPY . .
+WORKDIR /src/src/Presentation
 
-WORKDIR "/src/src/Worker"
-RUN dotnet build "./RegisterWorker.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet restore Portfolio.WebApplication.csproj
+RUN dotnet publish Portfolio.WebApplication.csproj -c Release -o /app/out
 
-# Esta fase é usada para publicar o projeto de serviço a ser copiado para a fase final
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./RegisterWorker.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
-
-# Esta fase é usada na produção ou quando executada no VS no modo normal (padrão quando não está usando a configuração de Depuração)
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 
-COPY --from=publish /app/publish .
+COPY --from=build /app/out ./
 
-ENTRYPOINT ["dotnet", "RegisterWorker.dll"]
+EXPOSE 80
+
+ENTRYPOINT ["dotnet", "Portfolio.WebApplication.dll"]
