@@ -3,7 +3,7 @@ WORKDIR /src
 
 COPY . ./
 
-WORKDIR /src/src/Presentation
+WORKDIR /src/src/WebApplication
 
 RUN dotnet restore "./src/WebApplication/Portfolio.WebApplication.csproj"
 RUN dotnet publish "./Portfolio.WebApplication.csproj" -c Release -o /app/out
