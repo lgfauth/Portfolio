@@ -5,8 +5,8 @@ COPY . ./
 
 WORKDIR /src/src/Presentation
 
-RUN dotnet restore Portfolio.WebApplication.csproj
-RUN dotnet publish Portfolio.WebApplication.csproj -c Release -o /app/out
+RUN dotnet restore "./src/WebApplication/Portfolio.WebApplication.csproj"
+RUN dotnet publish "./Portfolio.WebApplication.csproj" -c Release -o /app/out
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app

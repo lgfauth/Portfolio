@@ -12,8 +12,8 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/WebApplication/Portfolio.WebApplication/Portfolio.WebApplication.csproj", "src/WebApplication/Portfolio.WebApplication/"]
-RUN dotnet restore "./src/WebApplication/Portfolio.WebApplication/Portfolio.WebApplication.csproj"
+COPY ["src/WebApplication/Portfolio.WebApplication.csproj", "src/WebApplication/Portfolio.WebApplication/"]
+RUN dotnet restore "./src/WebApplication/Portfolio.WebApplication.csproj"
 COPY . .
 WORKDIR "/src/src/WebApplication/Portfolio.WebApplication"
 RUN dotnet build "./Portfolio.WebApplication.csproj" -c $BUILD_CONFIGURATION -o /app/build
