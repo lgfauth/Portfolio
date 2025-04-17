@@ -4,25 +4,47 @@
     ViewData["Title"] = "Home page";
 }
 
-<section class="hero">
-    <h1>Oi, eu sou Luan.</h1>
-    <p>Desenvolvedor Backend | Experiência com .NET e C#</p>
+<div class="sobreposto sobre">About</div>
+
+<section class="intro">
+    <img src="images/Luandelonge.png" alt="Profile Picture" />
+    <div class="text">
+        <h1>Luan Fauth</h1>
+        <p>Desenvolvedor Backend especializado em .NET C#.</p>
+        <p>
+            <a href="#" style="color: #b86cff;">Meu resumo</a>
+        </p>
+    </div>
 </section>
 
-<section class="section" id="projects">
-    <h2>Projetos</h2>
+<section class="section">
+    <div class="sobreposto projetos">Projetos</div>
+    <h2>Meus Projetos</h2>
     <div class="projects">
-        <div class="project-card">
-            <h3>Integração de API com IA</h3>
-            <p>Projeto pessoal usando OpenAI para gerar respostas inteligentes em um chatbot.</p>
+        <div class="project">
+            <h3>Chat bot sobre mim</h3>
+            <p>Um chatbot com IA que responde suas dúvidas sobre minhas qualificações.</p>
         </div>
-        <div class="project-card">
-            <h3>Soluções SOLID</h3>
-            <p>Exemplo de API com arquitetura Clean e princípios SOLID aplicados.</p>
+        <div class="project">
+            <h3>API de autenticação JWT</h3>
+            <p>API de controle de login via JWT usando roles para diferentes acessos.</p>
         </div>
-        <div class="project-card">
-            <h3>Gerenciamento de usuários</h3>
-            <p>Funcionalidades de autenticação e cadastro com persistência em MongoDB.</p>
+        <div class="project">
+            <h3>Workers</h3>
+            <p>Workers que fazem muitas coisas por baixo dos panos, como controle de mensageria via e-mail e filas no RabbitMQ.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="sobreposto referencias">Referências</div>
+    <h2>Referências</h2>
+    <div class="testimonies">
+        <div class="testimony">
+            <p>"Grande desenvolvedor, resolveu problemas que tinhamos com aplicações legadas reformulando para um modelo mais moderno e responsivo."<br />– Alguém Qualquer</p>
+        </div>
+        <div class="testimony">
+            <p>"Profissional e cheio de conhecimento."<br />– Outro Alguém Qualquer</p>
         </div>
     </div>
 </section>

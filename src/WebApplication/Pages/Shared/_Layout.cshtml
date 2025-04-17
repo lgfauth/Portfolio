@@ -3,113 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"] - Presentation LFauth Dev Hub</title>
+    <title>@ViewData["Title"] - LFauth Dev Hub</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Portfolio.WebApplication.styles.css" asp-append-version="true" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          font-family: 'Inter', sans-serif;
-        }
-
-        body {
-          background-color: #0e0e0e;
-          color: #f0f0f0;
-        }
-
-        header {
-          padding: 20px 40px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          background-color: #121212;
-        }
-
-        nav a {
-          color: #f0f0f0;
-          text-decoration: none;
-          margin-left: 20px;
-          font-weight: 600;
-        }
-
-        .toggle-theme {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          background-color: #fff;
-          border: 2px solid #444;
-        }
-
-        .hero {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: flex-start;
-          background: url('../background-img.jpg') no-repeat center/cover;
-          height: 100vh;
-          padding: 40px;
-          color: #ffffff;
-          background-color: rgba(0, 0, 0, 0.6);
-        }
-
-        .hero h1 {
-          font-size: 48px;
-          font-weight: 800;
-        }
-
-        .hero p {
-          font-size: 20px;
-          margin-top: 10px;
-          color: #ccc;
-        }
-
-        .section {
-          padding: 60px 40px;
-        }
-
-        .projects {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-          gap: 20px;
-          margin-top: 20px;
-        }
-
-        .project-card {
-          background-color: #1c1c1c;
-          border-radius: 8px;
-          padding: 20px;
-          color: #f0f0f0;
-          border: 1px solid #333;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header>
-        <h2>LFauth Dev Hub</h2>
-        <nav>
-            <a href="#projects">Projetos</a>
-            <a href="#about">Sobre</a>
-            <a href="#contact">Contato</a>
-        </nav>
-        <div class="toggle-theme"></div>
+        <div class="container">
+            <div class="logo">LFauth Dev Hub</div>
+            <div class="menu" onclick="toggleMenu()">☰</div>
+        </div>
     </header>
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="overlay" id="overlay" onclick="closeMenu(event)">
+        <div class="overlay-content" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="toggleMenu()">&times;</button>
+            <nav>
+                <a href="#">HOME</a>
+                <a href="#">SOBRE</a>
+                <a href="#">PROJETOS</a>
+                <a href="#">SERVIÇOS</a>
+                <a href="#">CONTATO</a>
+            </nav>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - Portfolio.WebApplication - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
+    <main class="container">
+        @RenderBody()
+    </main>
+
+
+    <footer>
+        &copy; 2025 LFauth Dev Hub. All rights reserved.
     </footer>
+
+    <script>
+        function toggleMenu() {
+          document.getElementById('overlay').classList.toggle('active');
+        }
+
+        function closeMenu(event) {
+          const overlay = document.getElementById('overlay');
+          if (event.target === overlay) {
+            overlay.classList.remove('active');
+          }
+        }
+    </script>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
